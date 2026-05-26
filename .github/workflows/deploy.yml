@@ -1,25 +1,16 @@
-name: Deploy to GitHub Pages
+name: Deploy to VPS Katalis
 on:
   push:
     branches: [main]
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: pages
-  cancel-in-progress: false
+  workflow_dispatch:
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Deploy via SSH (git pull on VPS)
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          path: .
-      - uses: actions/deploy-pages@v4
-        id: deployment
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: "true"
