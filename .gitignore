@@ -1,0 +1,13 @@
+# Exclude v2 light version
+Proposal/proposal-training-korporasi-v2.html
+
+# Project internal files
+CLAUDE.md
+DESIGN.md
+PROJECT-BRIEF.md
+.claude/
+Reference/
+Materi/
+Website/
+Resource/icons/thumbs/
+Resource/*.png

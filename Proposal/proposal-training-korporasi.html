@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalis | AI Series Training untuk Korporasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --red:#E82C0C;--red-dark:#C42409;
+  --blue:#6CB4E4;--blue-dark:#4A9BD9;
+  --green:#A8D06E;--green-dark:#7AB85D;
+  --gold:#F5A623;
+  --navy:#0B1120;--navy-mid:#111827;--navy-light:#1A2332;
+  --surface:rgba(255,255,255,0.04);
+  --surface-hover:rgba(255,255,255,0.07);
+  --glass:rgba(255,255,255,0.06);
+  --glass-border:rgba(255,255,255,0.1);
+  --text-primary:rgba(255,255,255,0.92);
+  --text-secondary:rgba(255,255,255,0.65);
+  --text-muted:rgba(255,255,255,0.4);
+  --border:rgba(255,255,255,0.1);
+  --shadow:0 4px 24px rgba(0,0,0,0.3);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.4);
+  --radius:12px;--radius-lg:16px;--radius-xl:24px;
+  --content-max:1200px;--content-narrow:900px;
+}
+
+html{scroll-behavior:smooth;scroll-snap-type:y proximity;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--navy);color:var(--text-secondary);line-height:1.6;overflow-x:hidden}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.25)}
+
+/* ===== NAV ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;height:72px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;z-index:1000;background:transparent;
+  transform:translateY(-100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.nav.nav-visible{transform:translateY(0);background:rgba(11,17,32,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav.nav-hidden{transform:translateY(-100%)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo img{height:26px;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;letter-spacing:.5px;position:relative;transition:color .3s}
+.nav-links a:hover{color:var(--text-primary)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--red);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;padding:10px 24px;background:var(--red);color:white;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .3s}
+.nav-cta:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,44,12,0.3)}
+
+/* ===== FIXED VIDEO BG ===== */
+.video-fixed{position:fixed;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.8s ease;pointer-events:none}
+.video-fixed.active{opacity:0.5}
+
+/* ===== HERO ===== */
+.hero-slide{background:rgba(11,17,32,0.86);height:100vh}
+.hero-intro{width:100%;text-align:center}
+.hero-intro-logo{display:flex;align-items:center;justify-content:center;margin-bottom:32px}
+.hero-intro-logo img{height:72px;object-fit:contain}
+.hero-intro-tag{font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,0.7)}
+
+.hero-content-slide{background:rgba(11,17,32,0.86);height:100vh}
+.hero-content-slide h1{font-family:'Poppins',sans-serif;font-size:clamp(42px,5.5vw,72px);font-weight:800;line-height:1.05;color:white;margin-bottom:28px;letter-spacing:-1.5px}
+.hero-content-slide h1 .accent{background:linear-gradient(90deg,var(--red),#FF5733,#F59E0B,var(--red));background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradient-shift 4s ease infinite;filter:drop-shadow(0 0 18px rgba(232,44,12,0.5)) drop-shadow(0 0 40px rgba(255,87,51,0.25))}
+@keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero-sub{font-size:clamp(22px,2.5vw,28px);line-height:1.5;color:rgba(255,255,255,0.8);max-width:600px;margin-bottom:16px}
+.hero-sub-after{font-size:clamp(22px,2.5vw,28px);line-height:1.5;color:rgba(255,255,255,0.8);max-width:600px;margin-bottom:48px}
+
+.rotate-block{position:relative;height:clamp(56px,7vw,82px);margin-bottom:16px;overflow:hidden}
+.rotate-word{position:absolute;left:0;top:0;display:inline-block;font-family:'Poppins',sans-serif;font-size:clamp(36px,4.5vw,56px);font-weight:800;text-transform:uppercase;letter-spacing:3px;line-height:1.2;padding:4px 20px;border-radius:8px;white-space:nowrap;opacity:0;transform:translateY(100%) scale(.95);transition:opacity .5s ease,transform .5s ease}
+.rotate-word.active{opacity:1;transform:translateY(0) scale(1)}
+.rotate-word.exit{opacity:0;transform:translateY(-100%) scale(.95)}
+.rotate-word:nth-child(1){color:#fff;background:var(--red)}
+.rotate-word:nth-child(2){color:#fff;background:var(--blue-dark)}
+.rotate-word:nth-child(3){color:#fff;background:var(--green-dark)}
+.rotate-word:nth-child(4){color:#fff;background:#D97706}
+
+.hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hero-btn-primary{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:var(--red);color:white;border:none;border-radius:10px;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;cursor:pointer;transition:all .3s;text-decoration:none}
+.hero-btn-primary:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,44,12,.35)}
+.hero-btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:transparent;color:var(--text-secondary);border:1px solid var(--border);border-radius:10px;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;cursor:pointer;transition:all .3s;text-decoration:none}
+.hero-btn-secondary:hover{border-color:rgba(255,255,255,.3);color:white;background:rgba(255,255,255,.05)}
+
+.scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-muted);font-size:12px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;z-index:3;animation:float 3s ease-in-out infinite;transition:opacity .6s ease}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.3),transparent)}
+
+/* ===== SECTIONS ===== */
+section{min-height:100vh;scroll-snap-align:start;position:relative;z-index:1;background:rgba(11,17,32,0.86);display:flex;align-items:center;justify-content:center}
+.container{max-width:var(--content-max);margin:0 auto;padding:60px 48px;width:100%}
+.container-narrow{max-width:var(--content-narrow);margin:0 auto;padding:40px 48px;width:100%}
+
+.section-label{font-family:'Poppins',sans-serif;font-size:clamp(28px,3.5vw,40px);font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;display:inline-flex;align-items:center;gap:0;background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradient-shift 4s ease infinite}
+.section-label.red{background-image:linear-gradient(90deg,var(--red),#FF5733,#F59E0B,var(--red));filter:drop-shadow(0 0 12px rgba(232,44,12,0.4))}
+.section-label.blue{background-image:linear-gradient(90deg,var(--blue),#5BA8D9,#A8D06E,var(--blue));filter:drop-shadow(0 0 12px rgba(108,180,228,0.4))}
+.section-label.green{background-image:linear-gradient(90deg,var(--green),#C4E96E,#6CB4E4,var(--green));filter:drop-shadow(0 0 12px rgba(168,208,110,0.4))}
+.section-label.gold{background-image:linear-gradient(90deg,#F59E0B,#FBBF24,#FF5733,#F59E0B);filter:drop-shadow(0 0 12px rgba(245,158,11,0.4))}
+
+h2{font-family:'Poppins',sans-serif;font-size:clamp(36px,4vw,54px);font-weight:700;line-height:1.15;color:white;letter-spacing:-.5px}
+h3{font-family:'Poppins',sans-serif;font-size:26px;font-weight:600;line-height:1.3;color:white}
+h4{font-family:'Poppins',sans-serif;font-size:20px;font-weight:600;line-height:1.4;color:var(--text-primary)}
+.section-sub{font-size:19px;line-height:1.75;color:var(--text-secondary);max-width:600px;margin-top:16px}
+
+.section-lighter{background:rgba(17,24,39,0.88)}
+.section-light{background:#f8f9fa;z-index:2}
+.section-light h4,.section-light h3,.section-light h2{color:#1a1a2e}
+.section-light p{color:#555}
+.section-light .section-label{filter:none}
+.section-light .trainer-card{background:white;border-color:rgba(0,0,0,.08);box-shadow:0 2px 16px rgba(0,0,0,.06)}
+.section-light .trainer-card:hover{box-shadow:0 4px 24px rgba(0,0,0,.1)}
+.section-light .accent-red{color:var(--red)}.section-light .accent-blue{color:var(--blue)}.section-light .accent-green{color:var(--green)}
+.section-light .marquee::before{background:linear-gradient(90deg,#f8f9fa,transparent)}
+.section-light .marquee::after{background:linear-gradient(90deg,transparent,#f8f9fa)}
+.section-lightest{background:rgba(26,35,50,0.88)}
+
+/* ===== REVEAL ===== */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+.reveal.d4{transition-delay:.4s}.reveal.d5{transition-delay:.5s}.reveal.d6{transition-delay:.6s}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(0.5);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+.reveal-scale.d1{transition-delay:.1s}.reveal-scale.d2{transition-delay:.2s}
+
+/* ===== FLOW DIAGRAM ===== */
+.flow-diagram{display:flex;align-items:center;gap:0;max-width:900px;margin:0 auto}
+.flow-hub{flex-shrink:0;position:relative}
+.flow-circle{width:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.flow-circle-icon{width:120px;height:120px;margin-bottom:12px;overflow:hidden;border-radius:50%}
+.flow-circle-icon video{width:100%;height:100%;object-fit:cover;filter:invert(1) brightness(1.5);mix-blend-mode:screen}
+.flow-circle-label{font-family:'Poppins',sans-serif;font-size:24px;font-weight:700;color:white;line-height:1.3;text-transform:uppercase;letter-spacing:1px}
+
+.flow-cards{display:flex;flex-direction:column;gap:14px;flex:1;margin-left:40px}
+.flow-card-item{display:flex;align-items:center;gap:18px;padding:20px 24px;border-radius:12px;border:1px solid}
+.flow-card-item.fc-blue{border-color:rgba(108,180,228,.2);background:rgba(108,180,228,.06)}
+.flow-card-item.fc-green{border-color:rgba(168,208,110,.2);background:rgba(168,208,110,.06)}
+.flow-card-item.fc-amber{border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.06)}
+.flow-card-item.fc-red{border-color:rgba(232,44,12,.2);background:rgba(232,44,12,.06)}
+.flow-card-icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;overflow:hidden}
+.flow-card-icon video{width:100%;height:100%;object-fit:cover;filter:invert(1) brightness(1.5);mix-blend-mode:screen}
+.flow-card-icon.fc-blue{background:rgba(108,180,228,.15);color:var(--blue)}
+.flow-card-icon.fc-green{background:rgba(168,208,110,.15);color:var(--green)}
+.flow-card-icon.fc-amber{background:rgba(245,158,11,.15);color:#F59E0B}
+.flow-card-icon.fc-red{background:rgba(232,44,12,.15);color:var(--red)}
+.flow-card-item strong{font-family:'Poppins',sans-serif;font-size:17px;font-weight:600;color:white;display:block}
+.flow-card-item p{font-size:15px;color:var(--text-secondary);margin-top:3px;line-height:1.4}
+
+.guide-layout{display:grid;grid-template-columns:1fr 350px;gap:48px;align-items:stretch;max-width:1100px;margin:0 auto}
+.dual-flow{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:1100px;margin:0 auto}
+.dual-flow .flow-diagram{max-width:none;margin:0}
+.doc-video{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1);align-self:stretch;position:relative}
+.doc-video video{width:100%;height:100%;object-fit:cover;display:block}
+.play-btn{position:absolute;inset:0;margin:auto;width:72px;height:72px;border:none;background:none;cursor:pointer;z-index:2;opacity:.9;transition:opacity .3s,transform .3s}
+.play-btn:hover{opacity:1;transform:scale(1.1)}
+.play-btn.hidden{opacity:0;pointer-events:none}
+
+/* ===== LAYOUTS ===== */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.split-55{grid-template-columns:55fr 45fr}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+
+/* ===== GLASS CARDS ===== */
+.card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:32px;transition:all .35s cubic-bezier(.4,0,.2,1)}
+.card:hover{background:var(--surface-hover);border-color:rgba(255,255,255,.15);transform:translateY(-2px);box-shadow:var(--shadow)}
+
+.feature-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-xl);padding:48px 40px;transition:all .4s;position:relative;overflow:hidden}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;transition:height .4s}
+.feature-card:hover{background:var(--surface-hover);box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.feature-card:hover::before{height:6px}
+.feature-card.red::before{background:linear-gradient(90deg,var(--red),var(--red-dark))}
+.feature-card.blue::before{background:linear-gradient(90deg,var(--blue),var(--blue-dark))}
+.feature-card.green::before{background:linear-gradient(90deg,var(--green),var(--green-dark))}
+
+.feature-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:24px;overflow:hidden}
+.feature-icon video{width:100%;height:100%;object-fit:cover;filter:invert(1) brightness(1.5);mix-blend-mode:screen}
+.feature-icon.red{background:rgba(232,44,12,.15);color:var(--red)}
+.feature-icon.blue{background:rgba(108,180,228,.15);color:var(--blue)}
+.feature-icon.green{background:rgba(168,208,110,.15);color:var(--green)}
+.feature-icon.gold{background:rgba(245,158,11,.15);color:#F59E0B}
+
+/* ===== TAGS ===== */
+.tag{display:inline-flex;align-items:center;padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;font-family:'JetBrains Mono',monospace;letter-spacing:.5px}
+.tag-red{background:rgba(232,44,12,.15);color:var(--red)}
+.tag-blue{background:rgba(108,180,228,.15);color:var(--blue)}
+.tag-green{background:rgba(168,208,110,.15);color:var(--green)}
+.tag-gold{background:rgba(245,158,11,.15);color:#F59E0B}
+
+.divider{width:48px;height:3px;border-radius:2px;margin:20px 0}
+.divider.red{background:var(--red)}.divider.blue{background:var(--blue)}.divider.green{background:var(--green)}
+
+/* ===== STATS ===== */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:800px;margin:0 auto}
+.stat-item{text-align:center}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:clamp(48px,6vw,72px);font-weight:700;line-height:1;margin-bottom:8px}
+.stat-desc{font-size:15px;color:var(--text-secondary);line-height:1.5;max-width:200px;margin:0 auto}
+
+/* ===== STEPS ===== */
+.steps-row{display:flex;gap:0;position:relative;margin-top:64px}
+.step-item{flex:1;text-align:center;position:relative;padding:0 24px}
+.step-num{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:22px;margin:0 auto 20px;position:relative;z-index:2;transition:transform .3s}
+.step-item:hover .step-num{transform:scale(1.08)}
+.step-connector{position:absolute;top:32px;left:calc(50% + 32px);right:calc(-50% + 32px);height:2px;background:var(--border);z-index:1}
+.step-item h3{margin-bottom:12px}
+.step-item p{font-size:17px;line-height:1.65;color:var(--text-secondary)}
+
+/* ===== TIMELINE ===== */
+.tl-wrap{position:relative;display:flex;justify-content:space-between;max-width:960px;margin:48px auto 0;padding-top:48px}
+.tl-wrap::before{content:'';position:absolute;top:48px;left:60px;right:60px;height:3px;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));border-radius:2px;z-index:0}
+.tl-col{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1}
+.tl-node{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:18px;color:white;margin-bottom:24px;position:relative;box-shadow:0 0 20px rgba(0,0,0,0.3);transition:transform .3s}
+.tl-col:hover .tl-node{transform:scale(1.1)}
+.tl-node.n1{background:var(--red)}
+.tl-node.n2{background:var(--gold)}
+.tl-node.n3{background:var(--green-dark)}
+.tl-node-label{position:absolute;top:-32px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
+.tl-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:20px;width:100%;max-width:280px;transition:all .35s}
+.tl-card:hover{background:var(--surface-hover);box-shadow:var(--shadow)}
+.tl-card h4{font-size:16px;margin-bottom:12px;text-align:center}
+.tl-track{padding:10px 0;border-top:1px solid var(--border)}
+.tl-track:first-of-type{border-top:none}
+.tl-track-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.tl-track-label.red{color:var(--red)}
+.tl-track-label.blue{color:var(--blue)}
+.tl-track-item{font-size:13px;color:var(--text-secondary);line-height:1.5;padding:1px 0}
+.tl-track-output{font-size:12px;margin-top:2px}
+
+/* ===== PRICING ===== */
+.pricing-wide{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:900px;margin:0 auto}
+.price-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-xl);padding:36px 32px;position:relative;overflow:hidden;transition:all .35s}
+.price-card:hover{background:var(--surface-hover);box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.price-amount{font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:700;color:white;line-height:1}
+.price-per{font-size:16px;color:var(--text-muted);margin-top:8px}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.price-features li{display:flex;align-items:flex-start;gap:10px;font-size:16px;line-height:1.6;color:var(--text-secondary)}
+.price-features li::before{content:"✓";font-weight:700;flex-shrink:0;margin-top:1px}
+.price-features.red li::before{color:var(--red)}
+.price-features.blue li::before{color:var(--blue)}
+
+.price-addon{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:20px 24px;margin-top:24px;display:flex;align-items:center;gap:16px;max-width:900px;margin-left:auto;margin-right:auto}
+.price-addon .addon-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.price-addon .addon-icon video{width:100%;height:100%;object-fit:cover;filter:invert(1) brightness(1.5);mix-blend-mode:screen}
+
+/* ===== DIFFERENTIATOR ===== */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.diff-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:32px;text-align:center;transition:all .35s}
+.diff-card:hover{background:var(--surface-hover);transform:translateY(-2px);box-shadow:var(--shadow)}
+.diff-icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px;overflow:hidden}
+.diff-icon video{width:100%;height:100%;object-fit:cover;filter:invert(1) brightness(1.5);mix-blend-mode:screen}
+
+/* ===== TRAINER ===== */
+.trainer-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:36px;text-align:center;transition:all .35s}
+.trainer-card:hover{background:var(--surface-hover);transform:translateY(-3px);box-shadow:var(--shadow)}
+.trainer-avatar{width:100px;height:100px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 18px}
+
+/* ===== TRACK RECORD ===== */
+.track-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:32px}
+.track-stat{text-align:center;padding:20px;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);transition:all .3s}
+.track-stat:hover{background:var(--surface-hover)}
+.track-stat-num{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:white;line-height:1}
+.track-stat-label{font-size:12px;color:var(--text-muted);margin-top:6px;letter-spacing:.5px}
+
+.marquee{overflow:hidden;position:relative;margin-top:32px}
+.marquee::before,.marquee::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:1}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--navy-mid),transparent)}
+.marquee::after{right:0;background:linear-gradient(90deg,transparent,var(--navy-mid))}
+.marquee-track{display:flex;gap:48px;align-items:center;animation:marquee-scroll 25s linear infinite;width:max-content}
+.marquee-track img{height:38px;opacity:.6;transition:opacity .3s;filter:invert(1) grayscale(1)}
+.marquee-track img:hover{opacity:.85}
+@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ===== TESTIMONIAL ===== */
+.testimonial-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.testimonial-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:28px;position:relative}
+.testimonial-card::before{content:'"';font-family:'Poppins',serif;font-size:64px;font-weight:800;color:var(--red);opacity:.3;position:absolute;top:8px;left:20px;line-height:1}
+.testimonial-text{font-size:15px;font-style:italic;line-height:1.7;color:var(--text-secondary);padding-top:20px;margin-bottom:16px}
+.testimonial-author{font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:var(--text-primary)}
+.testimonial-role{font-size:12px;color:var(--text-muted)}
+.stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:8px}
+
+/* ===== CTA ===== */
+.cta-section{background:rgba(11,17,32,0.80)}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 30% 50%,rgba(232,44,12,.08) 0%,transparent 70%),radial-gradient(ellipse 50% 50% at 70% 50%,rgba(108,180,228,.06) 0%,transparent 60%);pointer-events:none}
+
+.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;background:var(--glass);border:1px solid var(--glass-border);border-radius:100px;font-size:13px;color:var(--text-secondary);backdrop-filter:blur(8px)}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+
+.accent-red{color:var(--red)}.accent-blue{color:var(--blue)}.accent-green{color:var(--green)}.accent-gold{color:var(--gold)}
+.text-center{text-align:center}.mx-auto{margin:0 auto}
+.mb-4{margin-bottom:4px}.mb-8{margin-bottom:8px}.mb-12{margin-bottom:12px}.mb-16{margin-bottom:16px}
+.mb-24{margin-bottom:24px}.mb-32{margin-bottom:32px}.mb-48{margin-bottom:48px}
+.mt-8{margin-top:8px}.mt-16{margin-top:16px}.mt-24{margin-top:24px}
+.mt-32{margin-top:32px}.mt-48{margin-top:48px}.mt-64{margin-top:64px}
+.fw-500{font-weight:500}.fw-600{font-weight:600}.fw-700{font-weight:700}
+.fs-13{font-size:13px}.fs-14{font-size:14px}.fs-15{font-size:15px}
+
+@media(max-width:1024px){
+  html{scroll-snap-type:none}
+  section{height:auto;min-height:0;scroll-snap-align:none;padding:80px 0}
+  .hero-slide,.hero-content-slide{min-height:100vh;min-height:100svh;padding:0}
+  .nav{padding:0 24px}.nav-links{display:none}.nav-cta{display:none}
+  .container,.container-narrow{padding:0 24px}
+  .split,.split-55,.grid-3,.grid-2,.diff-grid{grid-template-columns:1fr;gap:24px}
+  .steps-row{flex-direction:column;gap:40px}
+  .step-connector{display:none}
+  .flow-diagram{flex-direction:column;gap:20px}
+  .flow-cards{margin-left:0}
+  .guide-layout{grid-template-columns:1fr;gap:32px}
+  .doc-video{width:100%;max-width:320px;margin:0 auto}
+  .dual-flow{grid-template-columns:1fr;gap:40px}
+  .dual-flow .flow-diagram{flex-direction:column;gap:20px}
+  .dual-flow .flow-cards{margin-left:0}
+  .pricing-wide{grid-template-columns:1fr}
+  .tl-wrap{flex-direction:column;align-items:flex-start;padding-top:0;padding-left:40px;gap:32px}
+  .tl-wrap::before{top:0;bottom:0;left:26px;right:auto;width:3px;height:auto}
+  .tl-col{flex-direction:row;align-items:flex-start;gap:24px}
+  .tl-node{flex-shrink:0;margin-bottom:0;width:48px;height:48px;font-size:16px}
+  .tl-node-label{position:static;margin-bottom:4px;font-size:10px}
+  .tl-card{max-width:none}
+  .tl-card h4{text-align:left}
+  .stats-row{grid-template-columns:1fr;gap:16px}
+  .stat-item{padding:16px 0}
+  .track-stats{grid-template-columns:repeat(3,1fr)}
+  .price-card{padding:28px 20px}
+  .testimonial-grid{grid-template-columns:1fr}
+  .rotate-word{font-size:clamp(20px,5.5vw,36px);letter-spacing:1px;padding:4px 14px}
+  .rotate-block{height:clamp(36px,7vw,60px)}
+}
+@media(max-width:640px){
+  section{padding:60px 0}
+  .hero-slide,.hero-content-slide{min-height:100vh;min-height:100svh;padding:0}
+  .hero-actions{flex-direction:column;align-items:flex-start}
+  .rotate-word{font-size:clamp(16px,4.8vw,28px);letter-spacing:0.5px;padding:3px 10px}
+  .rotate-block{height:clamp(28px,6vw,44px)}
+  .hero-content-slide h1{font-size:clamp(28px,7vw,42px)}
+  .hero-sub,.hero-sub-after{font-size:clamp(16px,4vw,22px)}
+  .section-sub{font-size:16px}
+  .stat-desc{font-size:14px;max-width:none}
+  .flow-card-item strong{font-size:15px}
+  .flow-card-item p{font-size:14px}
+  .track-stats{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<video class="video-fixed active" autoplay muted loop playsinline id="vid1">
+  <source src="../Resource/bg-video-1.mp4" type="video/mp4">
+</video>
+<video class="video-fixed" autoplay muted loop playsinline id="vid2">
+  <source src="../Resource/bg-video-2.mp4" type="video/mp4">
+</video>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-logo">
+    <img src="../Asset/Katalis-2048x510.webp" alt="Katalis">
+  </div>
+  <div class="nav-links">
+    <a href="#context">Konteks</a>
+    <a href="#solution">Solusi</a>
+    <a href="#program">Program</a>
+    <a href="#pricing">Investasi</a>
+    <a href="#team">Tim</a>
+  </div>
+  <a href="#contact" class="nav-cta">Jadwalkan Diskusi</a>
+</nav>
+
+<!-- ===== HERO INTRO ===== -->
+<section class="hero-slide" id="hero" data-vid="1">
+  <div class="hero-intro reveal">
+    <div class="hero-intro-logo">
+      <img src="../Asset/Katalis-2048x510.webp" alt="Katalis">
+    </div>
+    <p class="hero-intro-tag">Digital & AI Transformation Partner</p>
+  </div>
+  <div class="scroll-indicator">SCROLL<div class="scroll-line"></div></div>
+</section>
+
+<!-- ===== HERO CONTENT ===== -->
+<section class="hero-content-slide" data-vid="1">
+  <div class="container">
+    <h1 class="reveal">AI Series Training<br>untuk <span class="accent">Korporasi.</span></h1>
+    <p class="hero-sub reveal d1">Satu program untuk membangun</p>
+    <div class="rotate-block reveal d2" id="rotateBlock">
+      <span class="rotate-word active">AI CAPABILITY</span>
+      <span class="rotate-word">LEADERSHIP</span>
+      <span class="rotate-word">PRODUCTIVITY</span>
+      <span class="rotate-word">DIGITAL TRANSFORMATION</span>
+    </div>
+    <p class="hero-sub-after reveal d3">di seluruh level organisasi Anda.</p>
+  </div>
+</section>
+
+<!-- ===== KONTEKS INDUSTRI ===== -->
+<section id="context" data-vid="2">
+  <div class="container">
+    <div class="text-center mb-48">
+      <div class="section-label red reveal" style="justify-content:center;">Konteks Industri</div>
+      <p class="section-sub reveal d1 mx-auto" style="text-align:center;max-width:640px;">Adopsi AI terus meningkat di seluruh industri, namun tanpa kesiapan SDM yang memadai, investasi teknologi tidak akan menghasilkan dampak yang diharapkan.</p>
+    </div>
+    <div class="stats-row reveal d2">
+      <div class="stat-item">
+        <div class="stat-num accent-red">88%</div>
+        <p class="stat-desc">organisasi sudah menggunakan AI secara rutin <span style="display:block;font-size:12px;color:var(--text-muted);margin-top:4px">Sumber: McKinsey, June 2025</span></p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num accent-blue">80%</div>
+        <p class="stat-desc">proyek AI gagal, 2× lebih tinggi dari proyek IT biasa <span style="display:block;font-size:12px;color:var(--text-muted);margin-top:4px">Sumber: RAND Corporation</span></p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num accent-green">94%</div>
+        <p class="stat-desc">perusahaan belum melihat dampak signifikan dari investasi AI mereka <span style="display:block;font-size:12px;color:var(--text-muted);margin-top:4px">Sumber: McKinsey, 2025</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE PROBLEM ===== -->
+<section class="section-lighter" data-vid="1">
+  <div class="container">
+    <div class="text-center mb-32">
+      <div class="section-label red reveal" style="justify-content:center;">The Problem</div>
+      <p class="section-sub reveal d1 mx-auto" style="text-align:center;max-width:640px;">Tantangan utama bukan terletak pada teknologinya, melainkan pada kesiapan SDM di setiap level organisasi.</p>
+    </div>
+    <div class="flow-diagram">
+      <div class="flow-hub">
+        <div class="flow-circle reveal-scale d1">
+          <div class="flow-circle-icon"><video src="../Resource/icons/icon_19.webm" autoplay loop muted playsinline></video></div>
+          <span class="flow-circle-label">Kesiapan<br>Organisasi</span>
+        </div>
+      </div>
+      <div class="flow-cards">
+        <div class="flow-card-item fc-red reveal d2">
+          <div class="flow-card-icon fc-red"><video src="../Resource/icons/icon_21.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>LEADERSHIP GAP</strong><p>Pengambilan keputusan strategis belum didukung data dan rekomendasi AI. Jajaran manajerial perlu memahami cara memimpin organisasi di era baru ini.</p></div>
+        </div>
+        <div class="flow-card-item fc-blue reveal d3">
+          <div class="flow-card-icon fc-blue"><video src="../Resource/icons/icon_22.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>TECHNOLOGY GAP</strong><p>Tim operasional masih menghabiskan waktu untuk pekerjaan repetitif yang seharusnya dapat diotomasi. Alur kerja belum terbantu oleh AI.</p></div>
+        </div>
+        <div class="flow-card-item fc-amber reveal d4">
+          <div class="flow-card-icon fc-amber"><video src="../Resource/icons/icon_14.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>EXECUTION GAP</strong><p>Strategi transformasi sudah dirancang, namun eksekusi terhambat karena staf belum menguasai perangkat AI untuk produktivitas harian.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE REAL ISSUE ===== -->
+<section data-vid="2">
+  <div class="container">
+    <div class="text-center mb-32">
+      <div class="section-label red reveal" style="justify-content:center;">The Real Issue</div>
+      <p class="section-sub reveal d1 mx-auto" style="text-align:center;max-width:640px;">Pelatihan satu kali tidak cukup untuk mengubah perilaku kerja. Organisasi membutuhkan program berseri yang terstruktur dan berjalan cukup lama untuk membentuk kebiasaan baru.</p>
+    </div>
+    <div class="flow-diagram">
+      <div class="flow-hub">
+        <div class="flow-circle reveal-scale d1">
+          <div class="flow-circle-icon"><video src="../Resource/icons/icon_16.webm" autoplay loop muted playsinline></video></div>
+          <span class="flow-circle-label">Program<br>Berseri</span>
+        </div>
+      </div>
+      <div class="flow-cards">
+        <div class="flow-card-item fc-green reveal d2">
+          <div class="flow-card-icon fc-green"><video src="../Resource/icons/icon_23.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>MULTI-MODUL & PROGRESIF</strong><p>Bukan pelatihan satu hari. Program dirancang multi-modul dan multi-bulan dengan alur yang progresif.</p></div>
+        </div>
+        <div class="flow-card-item fc-blue reveal d3">
+          <div class="flow-card-icon fc-blue"><video src="../Resource/icons/icon_5.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>ASSESSMENT SETIAP TAHAP</strong><p>Setiap modul dilengkapi pengukuran kompetensi. Perkembangan peserta terlihat dari data, bukan asumsi.</p></div>
+        </div>
+        <div class="flow-card-item fc-amber reveal d4">
+          <div class="flow-card-icon fc-amber"><video src="../Resource/icons/icon_4.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>PERUBAHAN YANG BERTAHAN</strong><p>Durasi program dirancang cukup panjang untuk membentuk kebiasaan kerja baru yang permanen.</p></div>
+        </div>
+        <div class="flow-card-item fc-red reveal d5">
+          <div class="flow-card-icon fc-red"><video src="../Resource/icons/icon_25.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>ROI TERUKUR</strong><p>Data perkembangan tersedia di setiap tahap sehingga ROI pelatihan dapat dibuktikan secara konkret.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE GUIDE (PROOF) ===== -->
+<section class="section-lighter" data-vid="1">
+  <div class="container">
+    <div class="guide-layout">
+      <div>
+        <div class="section-label green reveal">The Guide</div>
+        <p class="section-sub reveal d1 mb-32">Berpengalaman langsung melatih korporasi dan institusi terkemuka di Indonesia, mulai dari level manajerial hingga operasional.</p>
+        <div class="flow-diagram" style="max-width:none;margin:0">
+          <div class="flow-hub">
+            <div class="flow-circle reveal-scale d2">
+              <div class="flow-circle-icon"><video src="../Resource/icons/icon_11.webm" autoplay loop muted playsinline></video></div>
+              <span class="flow-circle-label">Track<br>Record</span>
+            </div>
+          </div>
+          <div class="flow-cards">
+            <div class="flow-card-item fc-blue reveal d3">
+              <div class="flow-card-icon fc-blue"><video src="../Resource/icons/icon_21.webm" autoplay loop muted playsinline></video></div>
+              <div><strong>LEADERSHIP PROGRAM</strong><p>Pelatihan supervisory skills, coaching, dan emotional intelligence untuk seluruh level kepemimpinan.</p></div>
+            </div>
+            <div class="flow-card-item fc-red reveal d4">
+              <div class="flow-card-icon fc-red"><video src="../Resource/icons/icon_22.webm" autoplay loop muted playsinline></video></div>
+              <div><strong>AI & TECHNOLOGY</strong><p>AI literacy, otomasi alur kerja, dan pengambilan keputusan berbasis data untuk seluruh tim.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="doc-video reveal d2">
+        <video id="guideVideo" src="../Resource/dokumentasi-acara-compressed.mp4" playsinline></video>
+        <button id="guidePlayBtn" class="play-btn" aria-label="Play video"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" stroke="white" stroke-width="2" fill="rgba(0,0,0,0.4)"/><polygon points="19,14 19,34 36,24" fill="white"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUSI ===== -->
+<section class="section-lighter" id="solution" data-vid="1">
+  <div class="container">
+    <div class="text-center mb-32">
+      <div class="section-label green reveal" style="justify-content:center;">Solusi Katalis</div>
+      <h2 class="reveal d1 mb-12" style="font-size:clamp(28px,3.5vw,42px);">Dua jalur pelatihan paralel.<br>Satu organisasi yang bergerak bersama.</h2>
+      <p class="section-sub reveal d2 mx-auto" style="text-align:center;max-width:640px;">Program pelatihan AI berseri dengan dua track yang berjalan bersamaan, memastikan jajaran kepemimpinan dan tim operasional berkembang secara selaras selama 3 bulan.</p>
+    </div>
+    <div class="grid-2 reveal d3" style="max-width:700px;margin-left:auto;margin-right:auto;">
+      <div class="feature-card red">
+        <div class="feature-icon red"><video src="../Resource/icons/icon_21.webm" autoplay loop muted playsinline></video></div>
+        <div class="tag tag-red mb-16">TRACK A</div>
+        <h4 class="mb-8">AI Leadership Series</h4>
+        <p class="fs-14" style="color:var(--text-muted);margin-bottom:16px;">Manager · Senior Manager · VP</p>
+        <p class="fs-15">Membangun kapabilitas strategis untuk memahami, mengevaluasi, dan memimpin inisiatif AI di organisasi.</p>
+        <p class="fs-14 mt-16" style="color:var(--text-muted);">3 modul · 6 hari · 3 bulan</p>
+      </div>
+      <div class="feature-card blue">
+        <div class="feature-icon blue"><video src="../Resource/icons/icon_22.webm" autoplay loop muted playsinline></video></div>
+        <div class="tag tag-blue mb-16">TRACK B</div>
+        <h4 class="mb-8">AI Practical Series</h4>
+        <p class="fs-14" style="color:var(--text-muted);margin-bottom:16px;">Staff · Supervisor · Junior Manager</p>
+        <p class="fs-15">Membangun kapabilitas praktis dalam menguasai perangkat AI, prompt engineering, dan peningkatan produktivitas harian.</p>
+        <p class="fs-14 mt-16" style="color:var(--text-muted);">3 modul · 6 hari · 3 bulan</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRACK A DETAIL ===== -->
+<section id="program" data-vid="2">
+  <div class="container">
+    <div class="text-center mb-32">
+      <div class="section-label red reveal" style="justify-content:center;">Track A</div>
+      <h2 class="reveal d1 mb-12" style="font-size:clamp(28px,3.5vw,42px);">AI Leadership Series</h2>
+      <p class="section-sub reveal d2 mx-auto" style="text-align:center;max-width:640px;">Tiga modul strategis untuk level Manager ke atas dengan durasi total 6 hari selama 3 bulan. Output akhir berupa presentasi AI Roadmap untuk masing-masing divisi.</p>
+    </div>
+    <div class="flow-diagram">
+      <div class="flow-hub">
+        <div class="flow-circle reveal-scale d1">
+          <div class="flow-circle-icon"><video src="../Resource/icons/icon_21.webm" autoplay loop muted playsinline></video></div>
+          <span class="flow-circle-label">Track A</span>
+        </div>
+      </div>
+      <div class="flow-cards">
+        <div class="flow-card-item fc-red reveal d2">
+          <div class="flow-card-icon fc-red"><video src="../Resource/icons/icon_16.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>AI LANDSCAPE & MINDSET FOR LEADERS</strong><p>Memahami apa itu AI dan mengapa ini menjadi tanggung jawab manajemen. Lanskap AI di korporasi global dan perubahan pola pikir kepemimpinan.</p><p style="font-size:14px;color:var(--text-muted);margin-top:6px;">2 hari · Bulan 1 · Topik: AI landscape global, mindset shift, tanggung jawab manajemen</p></div>
+        </div>
+        <div class="flow-card-item fc-amber reveal d3">
+          <div class="flow-card-icon fc-amber"><video src="../Resource/icons/icon_6.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>AI STRATEGY & BUSINESS IMPACT</strong><p>Mengevaluasi peluang AI dalam bisnis korporasi, membangun kerangka AI governance, dan pengambilan keputusan AI yang etis.</p><p style="font-size:14px;color:var(--text-muted);margin-top:6px;">2 hari · Bulan 2 · Topik: AI governance, ethical AI, use case & ROI evaluation</p></div>
+        </div>
+        <div class="flow-card-item fc-green reveal d4">
+          <div class="flow-card-icon fc-green"><video src="../Resource/icons/icon_11.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>LEADING AI TRANSFORMATION</strong><p>Strategi change management untuk adopsi AI dan membangun budaya AI di organisasi. Capstone: penyusunan AI Roadmap per divisi.</p><p style="font-size:14px;color:var(--text-muted);margin-top:6px;">2 hari · Bulan 3 · Topik: Change management, AI culture, capstone presentation</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRACK B DETAIL ===== -->
+<section class="section-lighter" data-vid="1">
+  <div class="container">
+    <div class="text-center mb-32">
+      <div class="section-label blue reveal" style="justify-content:center;">Track B</div>
+      <h2 class="reveal d1 mb-12" style="font-size:clamp(28px,3.5vw,42px);">AI Practical Series</h2>
+      <p class="section-sub reveal d2 mx-auto" style="text-align:center;max-width:640px;">Tiga modul praktik langsung untuk level Staff dan Supervisor dengan durasi total 6 hari selama 3 bulan. Output akhir berupa mini project AI yang dapat langsung diaplikasikan dalam pekerjaan.</p>
+    </div>
+    <div class="flow-diagram">
+      <div class="flow-hub">
+        <div class="flow-circle reveal-scale d1">
+          <div class="flow-circle-icon"><video src="../Resource/icons/icon_22.webm" autoplay loop muted playsinline></video></div>
+          <span class="flow-circle-label">Track B</span>
+        </div>
+      </div>
+      <div class="flow-cards">
+        <div class="flow-card-item fc-blue reveal d2">
+          <div class="flow-card-icon fc-blue"><video src="../Resource/icons/icon_22.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>AI FUNDAMENTALS & GETTING STARTED</strong><p>Konsep dasar AI dan cara berpikir fundamental di era AI. Pengenalan perangkat AI serta etika penggunaannya.</p><p style="font-size:14px;color:var(--text-muted);margin-top:6px;">2 hari · Bulan 1 · Topik: Konsep dasar AI, fundamental thinking, etika penggunaan</p></div>
+        </div>
+        <div class="flow-card-item fc-green reveal d3">
+          <div class="flow-card-icon fc-green"><video src="../Resource/icons/icon_23.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>GENERATIVE AI & PROMPT ENGINEERING</strong><p>Praktik langsung menggunakan ChatGPT, Claude, dan Gemini. Penguasaan teknik prompt: zero-shot, few-shot, dan chain-of-thought.</p><p style="font-size:14px;color:var(--text-muted);margin-top:6px;">2 hari · Bulan 2 · Topik: Teknik prompt, praktik langsung ChatGPT/Claude/Gemini</p></div>
+        </div>
+        <div class="flow-card-item fc-amber reveal d4">
+          <div class="flow-card-icon fc-amber"><video src="../Resource/icons/icon_25.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>AI FOR PRODUCTIVITY & REPORTING</strong><p>Pemanfaatan AI untuk email, presentasi, dan notulensi rapat. Analisis data dengan AI dan pelaporan otomatis. Capstone: mini project AI.</p><p style="font-size:14px;color:var(--text-muted);margin-top:6px;">2 hari · Bulan 3 · Topik: AI untuk email, presentasi, data analysis, reporting</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section data-vid="2">
+  <div class="container">
+    <div class="text-center mb-32">
+      <div class="section-label gold reveal" style="justify-content:center;">Timeline</div>
+      <h2 class="reveal d1 mb-12" style="font-size:clamp(28px,3.5vw,42px);">Dua track berjalan paralel selama 3 bulan.</h2>
+      <p class="section-sub reveal d2 mx-auto" style="text-align:center;max-width:640px;">Setiap bulan, kedua track menjalankan modul masing-masing sehingga seluruh organisasi bergerak serentak dari level atas hingga bawah.</p>
+    </div>
+    <div class="tl-wrap reveal d3">
+      <div class="tl-col">
+        <div class="tl-node n1"><span class="tl-node-label">Foundation</span>1</div>
+        <div class="tl-card">
+          <h4>Bulan 1</h4>
+          <div class="tl-track">
+            <div class="tl-track-label red">Track A · Modul 1</div>
+            <div class="tl-track-item">AI Landscape & Mindset for Leaders</div>
+            <div class="tl-track-item" style="color:var(--text-muted);font-size:12px;">2 hari pelatihan</div>
+          </div>
+          <div class="tl-track">
+            <div class="tl-track-label blue">Track B · Modul 1</div>
+            <div class="tl-track-item">AI Fundamentals & Getting Started</div>
+            <div class="tl-track-item" style="color:var(--text-muted);font-size:12px;">2 hari pelatihan</div>
+          </div>
+        </div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-node n2"><span class="tl-node-label">Deepening</span>2</div>
+        <div class="tl-card">
+          <h4>Bulan 2</h4>
+          <div class="tl-track">
+            <div class="tl-track-label red">Track A · Modul 2</div>
+            <div class="tl-track-item">AI Strategy & Business Impact</div>
+            <div class="tl-track-item" style="color:var(--text-muted);font-size:12px;">2 hari pelatihan</div>
+          </div>
+          <div class="tl-track">
+            <div class="tl-track-label blue">Track B · Modul 2</div>
+            <div class="tl-track-item">Generative AI & Prompt Engineering</div>
+            <div class="tl-track-item" style="color:var(--text-muted);font-size:12px;">2 hari pelatihan</div>
+          </div>
+        </div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-node n3"><span class="tl-node-label">Capstone</span>3</div>
+        <div class="tl-card">
+          <h4>Bulan 3</h4>
+          <div class="tl-track">
+            <div class="tl-track-label red">Track A · Modul 3</div>
+            <div class="tl-track-item">Leading AI Transformation</div>
+            <div class="tl-track-output" style="color:var(--red);">Output: AI Roadmap per divisi</div>
+          </div>
+          <div class="tl-track">
+            <div class="tl-track-label blue">Track B · Modul 3</div>
+            <div class="tl-track-item">AI for Productivity & Reporting</div>
+            <div class="tl-track-output" style="color:var(--blue);">Output: Mini project AI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIFFERENTIATOR ===== -->
+<section class="section-lighter" data-vid="1">
+  <div class="container">
+    <div class="text-center mb-32">
+      <div class="section-label green reveal" style="justify-content:center;">What Makes Us Different</div>
+      <p class="section-sub reveal d1 mx-auto" style="text-align:center;max-width:640px;">Katalis menggabungkan pelatihan berseri, assessment per modul, data terpusat, dan pemantauan perkembangan selama 3 bulan secara terukur.</p>
+    </div>
+    <div class="diff-grid reveal d2">
+      <div class="diff-card">
+        <div class="diff-icon" style="background:rgba(232,44,12,.12);"><video src="../Resource/icons/icon_21.webm" autoplay loop muted playsinline></video></div>
+        <h4 class="mb-12">Training Offline + On-Site</h4>
+        <p class="fs-14">Workshop tatap muka dengan assessment langsung menggunakan metode experiential dan praktik langsung. Dilengkapi studi kasus korporasi nyata.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon" style="background:rgba(108,180,228,.12);"><video src="../Resource/icons/icon_2.webm" autoplay loop muted playsinline></video></div>
+        <h4 class="mb-12">Katalis Learning Hub</h4>
+        <p class="fs-14">Seluruh materi, assessment, dan perkembangan peserta tersimpan terpusat dalam dashboard real-time. Akses diberikan selama 12 bulan per peserta.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon" style="background:rgba(168,208,110,.12);"><video src="../Resource/icons/icon_14.webm" autoplay loop muted playsinline></video></div>
+        <h4 class="mb-12">Integrasi Offline ↔ LMS</h4>
+        <p class="fs-14">Data pelatihan online dan offline tergabung dalam satu sistem. Memberikan gambaran lengkap per individu dan tim dengan laporan yang siap diaudit oleh direksi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ECOSYSTEM ===== -->
+<section data-vid="2">
+  <div class="container">
+    <div class="text-center mb-32">
+      <div class="section-label blue reveal" style="justify-content:center;">Ecosystem</div>
+      <p class="section-sub reveal d1 mx-auto" style="text-align:center;max-width:640px;">Platform terintegrasi untuk LMS, assessment, reporting, dan tracking.</p>
+    </div>
+    <div class="flow-diagram">
+      <div class="flow-hub">
+        <div class="flow-circle reveal-scale d1">
+          <div class="flow-circle-icon"><video src="../Resource/icons/icon_19.webm" autoplay loop muted playsinline></video></div>
+          <span class="flow-circle-label">Katalis<br>Learning Hub</span>
+        </div>
+      </div>
+      <div class="flow-cards">
+        <div class="flow-card-item fc-blue reveal d2">
+          <div class="flow-card-icon fc-blue"><video src="../Resource/icons/icon_2.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>LMS & LEARNING HUB</strong><p>Seluruh materi, rekaman ulang, dan referensi tersedia dengan akses 12 bulan per peserta.</p></div>
+        </div>
+        <div class="flow-card-item fc-green reveal d3">
+          <div class="flow-card-icon fc-green"><video src="../Resource/icons/icon_5.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>ASSESSMENT & KOMPETENSI</strong><p>Tersedia pre-test, post-test, dan peta kompetensi untuk setiap individu peserta.</p></div>
+        </div>
+        <div class="flow-card-item fc-red reveal d4">
+          <div class="flow-card-icon fc-red"><video src="../Resource/icons/icon_12.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>HR DASHBOARD & REPORTING</strong><p>Dashboard real-time dengan perkembangan terukur dan laporan yang siap dipresentasikan ke direksi.</p></div>
+        </div>
+        <div class="flow-card-item fc-amber reveal d5">
+          <div class="flow-card-icon fc-amber"><video src="../Resource/icons/icon_11.webm" autoplay loop muted playsinline></video></div>
+          <div><strong>TRACKING & SERTIFIKASI</strong><p>Pemantauan perkembangan per individu dan tim, dilengkapi sertifikasi digital untuk setiap modul dan series.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="section-lighter" id="pricing" data-vid="1">
+  <div class="container">
+    <div class="text-center mb-32">
+      <div class="section-label gold reveal" style="justify-content:center;">Investment</div>
+      <h2 class="reveal d1 mb-12">Investasi transparan dan terukur.</h2>
+      <p class="section-sub reveal d2 mx-auto" style="text-align:center;max-width:640px;">Harga per batch (maksimal 25 peserta) untuk seluruh rangkaian 3 modul selama 3 bulan. Sudah termasuk pelatihan offline, assessment, akses LMS 12 bulan, dan sertifikasi.</p>
+    </div>
+    <div class="pricing-wide reveal d3">
+      <div class="price-card">
+        <div class="tag tag-red mb-24">TRACK A</div>
+        <h3 class="mb-8">AI Leadership Series</h3>
+        <p class="fs-14 mb-24" style="color:var(--text-muted);">Manager · Senior Manager · VP · 3 modul · 6 hari · 3 bulan</p>
+        <div class="divider red"></div>
+        <div class="price-amount accent-red mt-24">Rp 175.000.000</div>
+        <p class="price-per">per batch · maksimal 25 peserta</p>
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);">
+          <ul class="price-features red">
+            <li>3 modul pelatihan offline (6 hari total)</li>
+            <li>Assessment di setiap modul</li>
+            <li>Akses Learning Hub selama 12 bulan</li>
+            <li>Sertifikasi per modul dan sertifikat series</li>
+            <li>Capstone: AI Roadmap per divisi</li>
+          </ul>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="tag tag-blue mb-24">TRACK B</div>
+        <h3 class="mb-8">AI Practical Series</h3>
+        <p class="fs-14 mb-24" style="color:var(--text-muted);">Staff · Supervisor · Junior Manager · 3 modul · 6 hari · 3 bulan</p>
+        <div class="divider blue"></div>
+        <div class="price-amount accent-blue mt-24">Rp 105.000.000</div>
+        <p class="price-per">per batch · maksimal 25 peserta</p>
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);">
+          <ul class="price-features blue">
+            <li>3 modul pelatihan praktik langsung (6 hari total)</li>
+            <li>Assessment di setiap modul</li>
+            <li>Akses Learning Hub selama 12 bulan</li>
+            <li>Sertifikasi per modul dan sertifikat series</li>
+            <li>Capstone: Mini project AI</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="price-addon reveal d4 mt-24">
+      <div class="addon-icon" style="background:rgba(245,158,11,.15);"><video src="../Resource/icons/icon_5.webm" autoplay loop muted playsinline></video></div>
+      <div>
+        <p class="fw-600" style="color:white;">BNSP Certification</p>
+        <p class="fs-14">Tambah <span class="accent-gold fw-600">Rp 4.000.000</span> per orang · minimal 10 peserta</p>
+      </div>
+    </div>
+    <div class="price-addon reveal d5 mt-16">
+      <div class="addon-icon" style="background:rgba(108,180,228,.15);"><video src="../Resource/icons/icon_8.webm" autoplay loop muted playsinline></video></div>
+      <div>
+        <p class="fw-600" style="color:white;">Bundling Track A + B</p>
+        <p class="fs-14">Harga khusus dan koordinasi jadwal terintegrasi. Detail dibahas dalam diskusi lanjutan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEAM ===== -->
+<section class="section-light" id="team" data-vid="1">
+  <div class="container">
+    <div class="text-center mb-32">
+      <div class="section-label red reveal" style="justify-content:center;">Expert Trainers</div>
+      <p class="reveal d1 mx-auto" style="text-align:center;max-width:500px;font-size:17px;line-height:1.7;">Dipimpin oleh praktisi berpengalaman dengan rekam jejak langsung di industri.</p>
+    </div>
+    <div class="grid-3 reveal d2 mb-32">
+      <div class="trainer-card">
+        <img class="trainer-avatar" src="../Resource/razithalib.webp" alt="Razi Thalib">
+        <h4>Razi Thalib</h4>
+        <p class="fs-13 accent-red mb-12">Transformation · Track A Lead</p>
+        <p class="fs-14" style="line-height:1.65;">Lebih dari 20 tahun di industri digital. Mantan VP Digital Product Zalora, Google Developers Launchpad Mentor, dan Co-Founder RevoU.</p>
+      </div>
+      <div class="trainer-card">
+        <img class="trainer-avatar" src="../Resource/hilda.webp" alt="Hilda Ayuning Tyas">
+        <h4>Hilda Ayuning Tyas</h4>
+        <p class="fs-13 accent-green mb-12">Leadership · Track A Support</p>
+        <p class="fs-14" style="line-height:1.65;">Lebih dari 15 tahun pengalaman di BUMN dan swasta. Certified trainer dan assessor dengan spesialisasi leadership development untuk level manajerial.</p>
+      </div>
+      <div class="trainer-card">
+        <img class="trainer-avatar" src="../Resource/fikrishahab.webp" alt="Fikri Shahab">
+        <h4>Fikri Shahab</h4>
+        <p class="fs-13 accent-blue mb-12">AI Expert · Track B Lead</p>
+        <p class="fs-14" style="line-height:1.65;">Alumni ITB dan KAIST. Keahlian utama: Generative AI, LLM, Prompt Engineering, dan RAG. Berpengalaman dalam implementasi AI di perusahaan enterprise.</p>
+      </div>
+    </div>
+    <div class="reveal d3 text-center">
+      <p class="fs-14" style="padding:16px 24px;background:rgba(232,44,12,.06);border:1px solid rgba(232,44,12,.12);border-radius:8px;display:inline-block;"><strong class="accent-red">Katalis Trainer Network:</strong> 25+ expert yang dikurasi sesuai kebutuhan perusahaan Anda.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRACK RECORD ===== -->
+<section class="section-lighter" data-vid="2">
+  <div class="container">
+    <div class="text-center mb-32">
+      <div class="section-label green reveal" style="justify-content:center;">Track Record</div>
+      <p class="section-sub reveal d1 mx-auto" style="text-align:center;max-width:500px;">Dipercaya oleh berbagai institusi terkemuka di Indonesia.</p>
+    </div>
+    <div class="track-stats reveal d2">
+      <div class="track-stat"><div class="track-stat-num">200+</div><div class="track-stat-label">Total Projects</div></div>
+      <div class="track-stat"><div class="track-stat-num">100+</div><div class="track-stat-label">Total Brands</div></div>
+      <div class="track-stat"><div class="track-stat-num">150+</div><div class="track-stat-label">Digital Modules</div></div>
+      <div class="track-stat"><div class="track-stat-num">25+</div><div class="track-stat-label">Expert Trainers</div></div>
+      <div class="track-stat"><div class="track-stat-num">5</div><div class="track-stat-label">Countries</div></div>
+    </div>
+    <div class="testimonial-grid reveal d3">
+      <div class="testimonial-card">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p class="testimonial-text">"Training dari Katalis membuka wawasan baru dan membantu kami merancang strategi yang lebih efektif ke depannya."</p>
+        <p class="testimonial-author">Wulan</p>
+        <p class="testimonial-role">Tim Humas PDAM Depok</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p class="testimonial-text">"Katalis mengubah cara pandang kami: dari sekadar rutinitas operasional menjadi lebih terarah dengan tujuan yang jelas."</p>
+        <p class="testimonial-author">Riza</p>
+        <p class="testimonial-role">Tim Humas Baketrans Kemenhub</p>
+      </div>
+    </div>
+    <div class="reveal d4 mb-16 mt-32"><p style="font-size:12px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;text-align:center;">Klien BUMN, Perbankan & Korporasi</p></div>
+    <div class="marquee reveal d5">
+      <div class="marquee-track">
+        <img src="../Resource/client-logos/AHM.webp" alt="Astra Honda Motor">
+        <img src="../Resource/client-logos/Bank_Mandiri.webp" alt="Bank Mandiri">
+        <img src="../Resource/client-logos/BI.webp" alt="Bank Indonesia">
+        <img src="../Resource/client-logos/Daihatsu.webp" alt="Daihatsu">
+        <img src="../Resource/client-logos/Indosat.webp" alt="Indosat">
+        <img src="../Resource/client-logos/Roche.webp" alt="Roche">
+        <img src="../Resource/client-logos/Telkomsel_2021.webp" alt="Telkomsel">
+        <img src="../Resource/client-logos/Binus.webp" alt="BINUS University">
+        <img src="../Resource/client-logos/Telkom_Indonesia_2013.webp" alt="Telkom Indonesia">
+        <img src="../Resource/client-logos/Toyota.webp" alt="Toyota">
+        <img src="../Resource/client-logos/AHM.webp" alt="Astra Honda Motor">
+        <img src="../Resource/client-logos/Bank_Mandiri.webp" alt="Bank Mandiri">
+        <img src="../Resource/client-logos/BI.webp" alt="Bank Indonesia">
+        <img src="../Resource/client-logos/Daihatsu.webp" alt="Daihatsu">
+        <img src="../Resource/client-logos/Indosat.webp" alt="Indosat">
+        <img src="../Resource/client-logos/Roche.webp" alt="Roche">
+        <img src="../Resource/client-logos/Telkomsel_2021.webp" alt="Telkomsel">
+        <img src="../Resource/client-logos/Binus.webp" alt="BINUS University">
+        <img src="../Resource/client-logos/Telkom_Indonesia_2013.webp" alt="Telkom Indonesia">
+        <img src="../Resource/client-logos/Toyota.webp" alt="Toyota">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section" id="contact" data-vid="2">
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="text-center" style="max-width:640px;margin:0 auto;">
+      <h2 class="reveal d1" style="font-size:clamp(32px,4vw,44px);margin-bottom:20px;">Langkah selanjutnya<br>dimulai dari satu diskusi.</h2>
+      <p class="reveal d2" style="font-size:17px;line-height:1.75;color:var(--text-secondary);max-width:480px;margin:0 auto 40px;">Jadwalkan sesi diskusi awal bersama kami. Tim Katalis akan memetakan kebutuhan organisasi Anda dan merancang program yang tepat.</p>
+
+      <div class="reveal d3 mb-32">
+        <div class="card" style="padding:28px;text-align:left;max-width:420px;margin:0 auto;">
+          <p class="fw-600 mb-16" style="color:white;text-align:center;">Tahapan Kerja Sama</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span class="tag" style="padding:4px 10px;font-size:12px;flex-shrink:0;background:var(--red);color:white;">01</span><p class="fs-14">Diskusi awal dengan tim HR dan manajemen</p></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span class="tag" style="padding:4px 10px;font-size:12px;flex-shrink:0;background:var(--red);color:white;">02</span><p class="fs-14">Pre-assessment kompetensi AI di seluruh level</p></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span class="tag" style="padding:4px 10px;font-size:12px;flex-shrink:0;background:var(--red);color:white;">03</span><p class="fs-14">Penyusunan proposal program yang disesuaikan</p></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span class="tag" style="padding:4px 10px;font-size:12px;flex-shrink:0;background:var(--red);color:white;">04</span><p class="fs-14">Sesi percobaan modul pertama sebagai bukti nilai program</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal d4 mb-48">
+        <a href="https://wa.me/628112424834?text=Halo%2C%20saya%20tertarik%20dengan%20program%20AI%20Series%20Training%20untuk%20Korporasi" target="_blank" style="display:inline-flex;align-items:center;gap:10px;padding:18px 40px;background:#25D366;color:white;border:none;border-radius:10px;font-family:'Poppins',sans-serif;font-weight:600;font-size:16px;cursor:pointer;transition:all .3s;text-decoration:none;" onmouseover="this.style.background='#1EBE57';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 30px rgba(37,211,102,.35)'" onmouseout="this.style.background='#25D366';this.style.transform='none';this.style.boxShadow='none'">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat via WhatsApp
+        </a>
+      </div>
+
+      <div class="reveal d5" style="max-width:360px;margin:0 auto;">
+        <div class="card" style="padding:28px;text-align:center;">
+          <p class="fw-600" style="color:white;margin-bottom:4px;">Helga Larz</p>
+          <p class="fs-13" style="color:var(--text-muted);margin-bottom:14px;">Program Coordinator</p>
+          <div style="padding-top:14px;border-top:1px solid var(--border);">
+            <p class="fs-14" style="color:var(--text-secondary);">+62 811-2424-834</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal d6" style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:center;align-items:center;gap:10px;">
+        <span class="fs-13" style="color:var(--text-muted);">© 2026</span>
+        <img src="../Asset/Katalis-2048x510.webp" alt="Katalis" style="height:18px;opacity:.7">
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const nav = document.getElementById('mainNav');
+const vh = window.innerHeight;
+
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y < vh * 1.8) { nav.classList.remove('nav-visible'); nav.classList.add('nav-hidden'); }
+  else { nav.classList.add('nav-visible'); nav.classList.remove('nav-hidden'); }
+}, { passive: true });
+
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => e.target.classList.toggle('visible', e.isIntersecting));
+}, { threshold: 0.15 });
+revealEls.forEach(el => observer.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Rotating words
+const words = document.querySelectorAll('.rotate-word');
+let cw = 0;
+setInterval(() => {
+  words[cw].classList.remove('active'); words[cw].classList.add('exit');
+  const prev = cw; cw = (cw + 1) % words.length;
+  words[cw].classList.remove('exit'); words[cw].classList.add('active');
+  setTimeout(() => { words[prev].classList.remove('exit'); }, 500);
+}, 2200);
+
+// Scroll-based video swap
+const vid1 = document.getElementById('vid1');
+const vid2 = document.getElementById('vid2');
+let currentVid = '1';
+const vidSections = document.querySelectorAll('[data-vid]');
+const vidObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.target.dataset.vid !== currentVid) {
+      currentVid = e.target.dataset.vid;
+      vid1.classList.toggle('active', currentVid === '1');
+      vid2.classList.toggle('active', currentVid === '2');
+    }
+  });
+}, { threshold: 0.25 });
+vidSections.forEach(s => vidObserver.observe(s));
+
+const guideVideo = document.getElementById('guideVideo');
+const guidePlayBtn = document.getElementById('guidePlayBtn');
+if (guideVideo && guidePlayBtn) {
+  function toggleGuide() {
+    if (guideVideo.paused) {
+      guideVideo.play();
+      guidePlayBtn.classList.add('hidden');
+    } else {
+      guideVideo.pause();
+      guidePlayBtn.classList.remove('hidden');
+    }
+  }
+  guidePlayBtn.addEventListener('click', toggleGuide);
+  guideVideo.addEventListener('click', toggleGuide);
+  guideVideo.addEventListener('ended', () => { guidePlayBtn.classList.remove('hidden'); });
+}
+</script>
+</body>
+</html>
