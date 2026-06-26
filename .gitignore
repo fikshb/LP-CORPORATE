@@ -11,3 +11,7 @@ Materi/
 Website/
 Resource/icons/thumbs/
 Resource/*.png
+
+# Internal deck source + unused hero bg variants (keep only hero-bg.mp4)
+deck pak wahyu di revisi.pdf
+Resource/bg/opt*.mp4
