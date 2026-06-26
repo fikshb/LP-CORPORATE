@@ -200,7 +200,20 @@ h1,h2{font-weight:900;letter-spacing:-0.03em;line-height:0.98}
 }
 @media(max-width:560px){
   .g2,.g3,.g4,.road,.kpis{grid-template-columns:1fr}
-  .slide{padding:64px 22px 80px}
+  /* top-align so tall content never hides under the fixed logo, and stays scrollable */
+  .slide{justify-content:flex-start;padding:66px 18px 84px}
+  .brandmark{height:17px;top:14px;left:16px}
+  .dctrl{bottom:14px;right:14px;gap:8px}
+  .navbtn{width:40px;height:40px}
+  .h1{font-size:2.1rem;line-height:1.04}
+  .h2{font-size:1.5rem;line-height:1.1}
+  .lead{font-size:1rem;margin-top:14px}
+  .kicker{font-size:.95rem}
+  .label{margin-bottom:12px}
+  .shift{font-size:.9rem;padding:13px 18px;gap:8px}
+  .card{padding:18px}
+  .hub-core{width:120px;height:120px}
+  .stat .n{font-size:2.4rem}
 }
 </style>
 </head>
