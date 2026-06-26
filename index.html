@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Katalis | From AI Training Provider to AI Growth Capability Partner</title>
-<meta name="description" content="Katalis — a standardized AI training engine with business-use-case labs, LMS-based capability tracking, and implementation follow-through. Designed to make AI a growth lever for BUMN and corporate clients.">
+<meta name="description" content="Katalis runs a standardized AI training engine with business-use-case labs, LMS-based capability tracking, and implementation follow-through, so AI becomes a growth lever for BUMN and corporate clients.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
@@ -231,6 +231,32 @@ footer.site .brand{color:#fff}
 footer.site a{color:rgba(255,255,255,0.6)}
 footer.site a:hover{color:#fff}
 
+/* track/package hub diagram */
+.hubwrap{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(22px,3vw,34px);box-shadow:var(--shadow-sm);margin-bottom:24px}
+.hubrow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px}
+.hubcard{flex:1;min-width:210px;background:var(--cream);border-radius:16px;padding:18px 20px}
+.hubcard .hl{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;display:block;margin-bottom:6px}
+.hubcard h4{font-size:1.05rem;margin-bottom:3px}
+.hubcard p{font-size:.82rem;color:var(--text-2)}
+.hub-a{border-left:3px solid var(--red)} .hub-a .hl{color:var(--red)}
+.hub-b{border-left:3px solid var(--blue)} .hub-b .hl{color:var(--blue)}
+.hub-conn{flex:none;width:56px;height:0;border-top:2px dotted var(--red);position:relative}
+.hub-conn::after{content:"\2194";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--card);color:var(--red);font-size:.9rem;padding:0 3px}
+.hub-core{flex:none;width:150px;height:150px;border-radius:50%;background:var(--ink);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px;border:3px solid var(--red);box-shadow:0 0 0 7px rgba(232,44,12,0.10),var(--shadow)}
+.hub-core .hl{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--red);font-weight:700;text-transform:uppercase}
+.hub-core strong{font-size:1.05rem;line-height:1.1;margin-top:3px}
+.hub-down{width:0;height:30px;border-left:2px dotted var(--red);margin:8px auto 0;position:relative}
+.hub-down::after{content:"\25BE";position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);color:var(--red);font-size:.9rem}
+.hub-pick{text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3);margin:10px 0 2px}
+.hub-merge{display:flex;align-items:stretch;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px}
+.pkgbar{flex:1;min-width:240px;border-radius:16px;padding:18px 22px;color:#fff}
+.pkgbar .pl{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;opacity:.85}
+.pkgbar strong{display:block;font-size:1.1rem;margin:4px 0}
+.pkgbar small{font-size:.8rem;opacity:.85;font-weight:400;display:block;line-height:1.45}
+.pkgbar.p1{background:var(--ink)}
+.pkgbar.p2{background:var(--red);position:relative}
+@media(max-width:760px){.hub-conn{display:none}.hub-core{order:-1;margin-bottom:6px}}
+
 /* reveal anim */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
@@ -288,13 +314,13 @@ footer.site a:hover{color:#fff}
   <div class="wrap">
     <div class="label reveal">AI Growth Capability Program</div>
     <h1 class="h-hero reveal d1" style="margin-top:22px">From AI Training Provider<br>to <span class="accent">AI Growth Capability Partner.</span></h1>
-    <p class="lead reveal d2">A standardized training engine strengthened with business-use-case labs, LMS-based capability tracking, and implementation follow-through — designed to make AI a growth lever for BUMN and corporate clients.</p>
+    <p class="lead reveal d2">A standardized training engine strengthened with business-use-case labs, LMS-based capability tracking, and implementation follow-through, so AI becomes a growth lever for BUMN and corporate clients.</p>
     <div class="hero-tags reveal d2">
       <span class="tag">Growth</span><span class="tag">Productivity</span><span class="tag">Governance</span>
       <span class="tag">HR Analytics</span><span class="tag">Workflow Adoption</span>
     </div>
     <div class="hero-cta reveal d3">
-      <a href="#contact" class="btn">Start a focused pilot →</a>
+      <a href="#contact" class="btn">Start a focused pilot</a>
       <a href="#model" class="btn ghost">See the program</a>
     </div>
     <div class="core-bar reveal d3">
@@ -310,14 +336,14 @@ footer.site a:hover{color:#fff}
   <div class="wrap">
     <div class="eyebrow-block reveal">
       <div class="label">About Katalis</div>
-      <h2 class="h-sec">A corporate learning partner for organizations<br>that are <span class="accent">transforming.</span></h2>
+      <h2 class="h-sec">A corporate learning partner for organizations<br>in <span class="accent">transformation.</span></h2>
     </div>
     <div class="split">
       <div class="reveal">
-        <p class="lead" style="margin-top:0">Katalis has supported <strong>100+ institutions</strong> — across BUMN, banking, multinational corporations, and government bodies — in building human-capital capability ready for the digital and AI era.</p>
+        <p class="lead" style="margin-top:0">Katalis has supported <strong>100+ institutions</strong> across BUMN, banking, multinational corporations, and government bodies, building human-capital capability ready for the digital and AI era.</p>
         <div class="card" style="margin-top:24px">
           <div class="label muted" style="color:var(--red)">Vision</div>
-          <p style="margin-top:10px">To be the trusted learning partner for Indonesian organizations on their transformation journey — connecting business strategy, human capability, and technology.</p>
+          <p style="margin-top:10px">To be the trusted learning partner for Indonesian organizations on their transformation journey, connecting business strategy, human capability, and technology.</p>
         </div>
         <div class="card" style="margin-top:16px">
           <div class="label muted" style="color:var(--red)">Expertise</div>
@@ -327,7 +353,7 @@ footer.site a:hover{color:#fff}
       <div class="card reveal d1">
         <div class="label" style="margin-bottom:18px">Why Katalis is different</div>
         <div class="rows" style="gap:18px">
-          <div style="display:flex;gap:14px"><span class="tick">◆</span><div><h4>Not a typical training provider</h4><p>We design assessment-based programs — not off-the-shelf module catalogs.</p></div></div>
+          <div style="display:flex;gap:14px"><span class="tick">◆</span><div><h4>Assessment-based, not off-the-shelf</h4><p>We design programs around assessment, not catalog modules.</p></div></div>
           <div style="display:flex;gap:14px"><span class="tick">◆</span><div><h4>Native AI capability</h4><p>Internal AI expertise with governance aligned to ISO/IEC 42001:2025 &amp; NIST AI RMF.</p></div></div>
           <div style="display:flex;gap:14px"><span class="tick">◆</span><div><h4>Measurable by design</h4><p>Every program has a baseline score, progress tracking, and a final impact report.</p></div></div>
           <div style="display:flex;gap:14px"><span class="tick">◆</span><div><h4>BUMN &amp; enterprise proven</h4><p>Direct experience with Bank Indonesia, Mandiri, BNI, BCA, Telkom, Freeport, Mitsubishi, and more.</p></div></div>
@@ -344,20 +370,20 @@ footer.site a:hover{color:#fff}
   <div class="wrap">
     <div class="eyebrow-block reveal">
       <div class="label">Market Imperative</div>
-      <h2 class="h-sec">AI value is real — but value capture<br>is becoming <span class="accent">selective.</span></h2>
-      <p class="lead">The growth opportunity is not in "using AI"; it is turning AI into enterprise capability, workflow change, and business outcomes.</p>
+      <h2 class="h-sec">AI value is real. Value capture<br>is becoming <span class="accent">selective.</span></h2>
+      <p class="lead">The growth opportunity is not in "using AI." It is converting AI into enterprise capability, workflow change, and business outcomes.</p>
     </div>
     <div class="grid g-4">
       <div class="card stat reveal"><div class="n n-ink">88%</div><div class="c">organizations now use AI routinely</div><div class="src">McKinsey 2025</div></div>
-      <div class="card stat reveal d1"><div class="n n-gold">80%</div><div class="c">of AI projects fail — 2× the rate of conventional IT</div><div class="src">RAND Corporation</div></div>
-      <div class="card stat reveal d2"><div class="n n-red">20→74%</div><div class="c">of AI returns captured by just 20% of companies</div><div class="src">PwC</div></div>
+      <div class="card stat reveal d1"><div class="n n-gold">80%</div><div class="c">of AI projects fail, twice the rate of conventional IT</div><div class="src">RAND Corporation</div></div>
+      <div class="card stat reveal d2"><div class="n n-red">74%</div><div class="c">of AI returns captured by just 20% of companies</div><div class="src">PwC</div></div>
       <div class="card stat reveal d3"><div class="n n-red">7.2×</div><div class="c">financial performance of the most AI-fit firms vs. others</div><div class="src">PwC</div></div>
     </div>
     <div class="split" style="margin-top:24px">
       <div class="card reveal">
         <div class="label">What AI leaders do differently</div>
         <div class="rows" style="margin-top:16px;gap:10px">
-          <div style="display:flex;gap:12px"><span class="tick">▪</span><p style="color:var(--text)">Aim AI at growth and reinvention — not just efficiency</p></div>
+          <div style="display:flex;gap:12px"><span class="tick">▪</span><p style="color:var(--text)">Aim AI at growth and reinvention, beyond efficiency</p></div>
           <div style="display:flex;gap:12px"><span class="tick">▪</span><p style="color:var(--text)">Redesign workflows and embed AI into business processes</p></div>
           <div style="display:flex;gap:12px"><span class="tick">▪</span><p style="color:var(--text)">Build foundations: strategy, talent, data, technology, governance</p></div>
         </div>
@@ -365,7 +391,7 @@ footer.site a:hover{color:#fff}
       <div class="callout reveal d1">
         <div class="k">Implication for BUMN clients</div>
         <p style="color:rgba(255,255,255,0.78);margin-top:12px">AI adoption is already happening at the individual level (92% of Indonesian knowledge workers use GenAI); yet 94% of companies see no significant impact. The strategic gap is <strong style="color:#fff">organizational</strong>: governance, capability, workflow, and measurable value.</p>
-        <p style="color:var(--red);font-weight:700;margin-top:14px">→ Katalis opportunity: make capability measurable.</p>
+        <p style="color:var(--red);font-weight:700;margin-top:14px">The Katalis opportunity: make capability measurable.</p>
       </div>
     </div>
     <div class="sfoot"><span>Sources: PwC 2026 · McKinsey 2025 · Microsoft/LinkedIn 2024 · Deloitte 2026</span><span>03 / 17</span></div>
@@ -379,7 +405,7 @@ footer.site a:hover{color:#fff}
     <div class="eyebrow-block reveal">
       <div class="label">Strategic Gap</div>
       <h2 class="h-sec">Most AI programs fail to scale because<br>training is not connected to <span class="accent">work.</span></h2>
-      <p class="lead">The market does not need another AI class. It needs a managed capability journey that turns learning into adoption, governance, and business impact.</p>
+      <p class="lead">The market does not need another AI class. It needs a managed capability journey that connects learning to adoption, governance, and business impact.</p>
     </div>
     <div class="grid g-4">
       <div class="card reveal"><span class="num-chip">1</span><h3>Training event</h3><p>Awareness is created, but capability fades if not embedded into real work.</p></div>
@@ -397,14 +423,14 @@ footer.site a:hover{color:#fff}
   <div class="wrap">
     <div class="eyebrow-block reveal">
       <div class="label">The Opportunity</div>
-      <h2 class="h-sec">AI helps organizations <span class="accent">grow — and capture returns faster.</span></h2>
+      <h2 class="h-sec">AI helps organizations <span class="accent">grow and capture returns faster.</span></h2>
       <p class="lead">The prize is not efficiency. Organizations that build AI capability now grow faster, reinvent how they work, and pull ahead while others stall.</p>
     </div>
     <div class="split">
       <div class="rows reveal">
-        <div class="row"><span class="num-chip" style="margin:0">↗</span><div><h4>Grow faster</h4><p>Leaders aim AI at growth and reinvention — redesigning workflows and embedding AI into core business processes.</p></div></div>
-        <div class="row"><span class="num-chip" style="margin:0">$</span><div><h4>Bigger returns</h4><p>Value is concentrating; the most AI-fit organizations capture the majority of AI-driven returns.</p></div></div>
-        <div class="row"><span class="num-chip" style="margin:0">∞</span><div><h4>Sooner &amp; compounding</h4><p>Capability compounds. Early movers widen the gap quarter over quarter; late movers pay to catch up.</p></div></div>
+        <div class="row"><span class="num-chip" style="margin:0">01</span><div><h4>Grow faster</h4><p>Leaders aim AI at growth and reinvention, redesigning workflows and embedding AI into core business processes.</p></div></div>
+        <div class="row"><span class="num-chip" style="margin:0">02</span><div><h4>Bigger returns</h4><p>Value is concentrating. The most AI-fit organizations capture the majority of AI-driven returns.</p></div></div>
+        <div class="row"><span class="num-chip" style="margin:0">03</span><div><h4>Sooner and compounding</h4><p>Capability compounds. Early movers widen the gap quarter over quarter, and late movers pay to catch up.</p></div></div>
       </div>
       <div class="card reveal d1">
         <div class="label">The widening gap</div>
@@ -417,11 +443,11 @@ footer.site a:hover{color:#fff}
           <circle cx="410" cy="160" r="6" fill="#9aa0a6"/>
           <text x="320" y="78" fill="#E82C0C" font-family="Inter" font-size="15" font-weight="800">AI-capable</text>
           <text x="330" y="150" fill="#7a7a7a" font-family="Inter" font-size="14" font-weight="700">Others</text>
-          <text x="44" y="218" fill="#9a9a9a" font-family="JetBrains Mono" font-size="10">Time →</text>
+          <text x="44" y="218" fill="#9a9a9a" font-family="JetBrains Mono" font-size="10">Time</text>
         </svg>
         <div style="display:flex;align-items:baseline;gap:14px;margin-top:8px;border-top:1px solid var(--line);padding-top:14px">
           <span class="n n-ink" style="font-size:2.2rem;font-weight:900">3×</span>
-          <span style="font-size:.86rem;color:var(--text-2)">faster growth for organizations with strong capability &amp; leadership pipeline<br><span class="src" style="color:var(--text-3)">DDI Global Forecast</span></span>
+          <span style="font-size:.86rem;color:var(--text-2)">faster growth for organizations with a strong capability and leadership pipeline<br><span class="src" style="color:var(--text-3)">DDI Global Forecast</span></span>
         </div>
       </div>
     </div>
@@ -436,11 +462,11 @@ footer.site a:hover{color:#fff}
     <div class="eyebrow-block reveal">
       <div class="label">The Real Issue</div>
       <h2 class="h-hero" style="font-size:clamp(2.1rem,5.5vw,4rem);margin-top:18px">One-off training does not change<br>how people <span class="accent">work.</span></h2>
-      <p class="lead">Awareness fades. Tools get used in pockets. Nothing is owned, nothing is measured. Capability only forms when learning is managed across months and connected to real work.</p>
+      <p class="lead">Awareness fades, tools get used in isolated pockets, and no one owns or measures the result. Capability only forms when learning is managed across months and connected to real work.</p>
     </div>
     <div class="callout reveal d1">
       <div class="k">The required shift</div>
-      <p class="big">From "AI training delivery" → to <span class="accent">AI Growth Capability</span> — managed through LMS, use cases, and implementation follow-through.</p>
+      <p class="big">Move from "AI training delivery" to <span class="accent">AI Growth Capability</span>, managed through LMS, use cases, and implementation follow-through.</p>
     </div>
     <div class="sfoot"><span>katalis.org · 2026</span><span>06 / 17</span></div>
   </div>
@@ -452,8 +478,8 @@ footer.site a:hover{color:#fff}
   <div class="wrap">
     <div class="eyebrow-block reveal">
       <div class="label">Program Model</div>
-      <h2 class="h-sec">Two entry points — scalable training,<br>or <span class="accent">capability transformation.</span></h2>
-      <p class="lead">This is the product — <strong>two packages</strong>. You choose by depth: training only, or training plus a business-use-case lab and implementation follow-through.</p>
+      <h2 class="h-sec">Two entry points: scalable training,<br>or <span class="accent">capability transformation.</span></h2>
+      <p class="lead">The product is <strong>two packages</strong>. You choose by depth: training only, or training plus a business-use-case lab and implementation follow-through.</p>
     </div>
     <div class="grid g-2">
       <div class="card reveal">
@@ -471,7 +497,7 @@ footer.site a:hover{color:#fff}
       <div class="card rec reveal d1">
         <span class="ribbon">Recommended</span>
         <div class="label muted" style="color:var(--red)">Package 2 · AI Growth Capability Plus</div>
-        <p style="margin-top:10px;color:var(--text-2)">Best for: turning training into business capability with workflow adoption.</p>
+        <p style="margin-top:10px;color:var(--text-2)">Best for: converting training into business capability with workflow adoption.</p>
         <div style="margin-top:18px;border-top:1px solid var(--line);padding-top:16px">
           <div class="label muted">Includes</div>
           <p style="margin-top:8px">Series + <strong>90-day implementation follow-through</strong></p>
@@ -492,11 +518,11 @@ footer.site a:hover{color:#fff}
   <div class="wrap">
     <div class="eyebrow-block reveal">
       <div class="label">Curriculum · Track A</div>
-      <h2 class="h-sec">Track A — <span class="accent">AI Growth Leadership &amp; Governance</span></h2>
-      <p class="lead">Manager · Senior Manager · VP / BOD-1 candidates · three strategic modules over 3 months (6 days).</p>
+      <h2 class="h-sec">Track A: <span class="accent">AI Growth Leadership &amp; Governance</span></h2>
+      <p class="lead">Manager · Senior Manager · VP / BOD-1 candidates. Three strategic modules over 3 months (6 days).</p>
     </div>
     <div class="grid g-3">
-      <div class="card mod reveal"><span class="mk">Module 01</span><h3>AI Mindset &amp; Leadership Alignment</h3><p>Understanding AI as a management responsibility — the global AI landscape and the shift in leadership thinking.</p><div class="meta">2 days · Month 1</div></div>
+      <div class="card mod reveal"><span class="mk">Module 01</span><h3>AI Mindset &amp; Leadership Alignment</h3><p>Understanding AI as a management responsibility: the global AI landscape and the shift in leadership thinking.</p><div class="meta">2 days · Month 1</div></div>
       <div class="card mod reveal d1"><span class="mk">Module 02</span><h3>AI Strategy, Business Impact &amp; Governance</h3><p>AI strategy and growth use cases; responsible AI governance, risk, ethics, and human oversight.</p><div class="meta">2 days · Month 2</div></div>
       <div class="card mod reveal d2"><span class="mk">Module 03</span><h3>Leading AI Transformation</h3><p>Change leadership and building an AI culture across the organization, closing with a capstone.</p><div class="meta">2 days · Month 3</div></div>
     </div>
@@ -514,12 +540,12 @@ footer.site a:hover{color:#fff}
   <div class="wrap">
     <div class="eyebrow-block reveal">
       <div class="label">Curriculum · Track B</div>
-      <h2 class="h-sec">Track B — <span class="accent">AI Productivity &amp; Workflow Transformation</span></h2>
-      <p class="lead">Staff · Supervisor · Junior Manager · three hands-on modules over 3 months (6 days).</p>
+      <h2 class="h-sec">Track B: <span class="accent">AI Productivity &amp; Workflow Transformation</span></h2>
+      <p class="lead">Staff · Supervisor · Junior Manager. Three hands-on modules over 3 months (6 days).</p>
     </div>
     <div class="grid g-3">
-      <div class="card mod reveal"><span class="mk">Module 01</span><h3>AI Fundamentals &amp; Responsible Usage</h3><p>Core AI concepts and fundamental thinking in the AI era — introduction to AI tools and ethical usage.</p><div class="meta">2 days · Month 1</div></div>
-      <div class="card mod reveal d1"><span class="mk">Module 02</span><h3>Generative AI &amp; Prompt Engineering</h3><p>Hands-on practice with ChatGPT, Claude, and Gemini — zero-shot, few-shot, and chain-of-thought techniques.</p><div class="meta">2 days · Month 2</div></div>
+      <div class="card mod reveal"><span class="mk">Module 01</span><h3>AI Fundamentals &amp; Responsible Usage</h3><p>Core AI concepts and fundamental thinking in the AI era, with an introduction to AI tools and ethical usage.</p><div class="meta">2 days · Month 1</div></div>
+      <div class="card mod reveal d1"><span class="mk">Module 02</span><h3>Generative AI &amp; Prompt Engineering</h3><p>Hands-on practice with ChatGPT, Claude, and Gemini, covering zero-shot, few-shot, and chain-of-thought techniques.</p><div class="meta">2 days · Month 2</div></div>
       <div class="card mod reveal d2"><span class="mk">Module 03</span><h3>AI for Productivity &amp; Reporting</h3><p>AI for reporting, analysis, meetings, email, and documents, with a mini project for daily workflow adoption.</p><div class="meta">2 days · Month 3</div></div>
     </div>
     <div class="reveal d1" style="margin-top:24px;background:var(--blue);color:#fff;border-radius:var(--r-lg);padding:24px 32px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:var(--shadow)">
@@ -537,33 +563,58 @@ footer.site a:hover{color:#fff}
     <div class="eyebrow-block reveal">
       <div class="label">Program Architecture</div>
       <h2 class="h-sec">Tracks define capability. Packages define <span class="accent">depth.</span></h2>
-      <p class="lead">You don't buy a track — you buy a <strong>package</strong>. Each package already runs both tracks for the right levels; Package 2 simply adds the implementation layer on top.</p>
+      <p class="lead">You don't buy a track. You buy a <strong>package</strong>. Each package already runs both tracks for the right levels, and Package 2 adds the implementation layer on top.</p>
     </div>
-    <div class="grid g-2">
-      <div class="card reveal">
-        <div style="display:flex;justify-content:space-between;align-items:center"><div class="label muted" style="color:var(--red)">Package 1 · Foundation Series</div><span class="src">Training</span></div>
-        <div style="margin-top:18px;display:flex;flex-direction:column;gap:12px">
-          <div style="background:var(--cream);border-radius:12px;padding:16px"><strong>Track A — Leadership &amp; Governance</strong><p style="font-size:.85rem;color:var(--text-2);margin-top:3px">for managers &amp; above</p></div>
-          <div style="background:var(--cream);border-radius:12px;padding:16px"><strong>Track B — Productivity &amp; Workflow</strong><p style="font-size:.85rem;color:var(--text-2);margin-top:3px">for staff &amp; supervisors</p></div>
-        </div>
-        <p style="font-size:.84rem;color:var(--text-3);margin-top:16px">+ Learning Hub access · assessment per module · certification</p>
+    <!-- two-axis mental model -->
+    <div class="grid g-2" style="margin-bottom:22px">
+      <div class="card reveal" style="display:flex;gap:16px;align-items:flex-start">
+        <span class="num-chip" style="margin:0;width:auto;padding:0 12px">A·B</span>
+        <div><h3 style="font-size:1.05rem">Tracks decide who learns</h3><p>Track A trains leaders and managers. Track B trains staff and supervisors. Both packages always include both tracks.</p></div>
       </div>
-      <div class="card rec reveal d1">
-        <span class="ribbon">Recommended</span>
-        <div style="display:flex;justify-content:space-between;align-items:center"><div class="label muted" style="color:var(--red)">Package 2 · Capability Plus</div><span class="src">Training + Implementation</span></div>
-        <div style="margin-top:18px;background:var(--cream);border-radius:12px;padding:16px">
-          <div class="src" style="color:var(--text-3)">Everything in Package 1</div>
-          <p style="margin-top:6px;font-size:.9rem">Both tracks (A + B) · Learning Hub · assessment · certification</p>
-        </div>
-        <div style="margin-top:12px;background:var(--red-soft);border-radius:12px;padding:16px">
-          <div class="label muted" style="color:var(--red)">+ Implementation layer</div>
-          <p style="margin-top:6px;font-size:.9rem;color:var(--text)">Readiness diagnostic · business-use-case lab · 90-day follow-through · executive capability report</p>
-        </div>
+      <div class="card reveal d1" style="display:flex;gap:16px;align-items:flex-start">
+        <span class="num-chip" style="margin:0;width:auto;padding:0 12px">1·2</span>
+        <div><h3 style="font-size:1.05rem">Packages decide how deep you go</h3><p>Package 1 is the training. Package 2 keeps the same training and adds an implementation layer on top.</p></div>
       </div>
     </div>
-    <div class="callout reveal" style="margin-top:24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
-      <span class="k" style="flex:none">Remember</span>
-      <span style="color:rgba(255,255,255,0.85);font-size:.96rem"><strong style="color:#fff">Track</strong> = who learns (the curriculum). <strong style="color:#fff">Package</strong> = what you buy (depth &amp; implementation). We sell <strong style="color:#fff">two packages</strong>; the Learning Hub is the backbone of both.</span>
+
+    <!-- hub-and-spoke: both tracks connect through the Learning Hub, then roll into the two packages -->
+    <div class="hubwrap reveal d1">
+      <div class="hubrow">
+        <div class="hubcard hub-a"><span class="hl">Track A</span><h4>Leadership &amp; Governance</h4><p>Managers and above</p></div>
+        <div class="hub-conn"></div>
+        <div class="hub-core"><span class="hl">Katalis</span><strong>Learning<br>Hub</strong><span style="font-size:.6rem;opacity:.7;margin-top:5px;font-family:var(--mono);letter-spacing:.1em">BACKBONE OF BOTH</span></div>
+        <div class="hub-conn"></div>
+        <div class="hubcard hub-b"><span class="hl">Track B</span><h4>Productivity &amp; Workflow</h4><p>Staff and supervisors</p></div>
+      </div>
+      <div class="hub-down"></div>
+      <div class="hub-pick">Both tracks roll into the package you choose</div>
+      <div class="hub-merge">
+        <div class="pkgbar p1"><span class="pl">Package 1 · Foundation Series</span><strong>Training</strong><small>Both tracks. Learning Hub access. Assessment per module and certification.</small></div>
+        <div class="pkgbar p2"><span class="ribbon" style="top:-12px;right:16px">Recommended</span><span class="pl">Package 2 · Capability Plus</span><strong>Training + Implementation</strong><small>Everything in Package 1, plus the 90-day implementation layer: diagnostic, use-case lab, follow-through, and executive report.</small></div>
+      </div>
+    </div>
+
+    <!-- inclusion table -->
+    <div class="card reveal d2" style="padding:0;overflow:hidden">
+      <table style="width:100%;border-collapse:collapse;font-size:.92rem">
+        <thead>
+          <tr style="background:var(--cream)">
+            <th style="text-align:left;padding:14px 20px;font-weight:600">What you get</th>
+            <th style="padding:14px 12px;font-weight:700;width:120px">Package 1</th>
+            <th style="padding:14px 12px;font-weight:700;width:120px;color:var(--red)">Package 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-top:1px solid var(--line)"><td style="padding:13px 20px">Track A · Leadership &amp; Governance</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td></tr>
+          <tr style="border-top:1px solid var(--line)"><td style="padding:13px 20px">Track B · Productivity &amp; Workflow</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td></tr>
+          <tr style="border-top:1px solid var(--line)"><td style="padding:13px 20px">AI Growth Learning Hub access</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td></tr>
+          <tr style="border-top:1px solid var(--line)"><td style="padding:13px 20px">Assessment per module + certification</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td></tr>
+          <tr style="border-top:1px solid var(--line);background:rgba(232,44,12,0.03)"><td style="padding:13px 20px">Readiness diagnostic</td><td style="text-align:center;color:var(--text-3)">○</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td></tr>
+          <tr style="border-top:1px solid var(--line);background:rgba(232,44,12,0.03)"><td style="padding:13px 20px">Business-use-case lab</td><td style="text-align:center;color:var(--text-3)">○</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td></tr>
+          <tr style="border-top:1px solid var(--line);background:rgba(232,44,12,0.03)"><td style="padding:13px 20px">90-day implementation follow-through</td><td style="text-align:center;color:var(--text-3)">○</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td></tr>
+          <tr style="border-top:1px solid var(--line);background:rgba(232,44,12,0.03)"><td style="padding:13px 20px">Executive capability report + scaling roadmap</td><td style="text-align:center;color:var(--text-3)">○</td><td style="text-align:center;color:var(--green);font-weight:700">✓</td></tr>
+        </tbody>
+      </table>
     </div>
     <div class="sfoot"><span>Katalis AI Series catalogue 2026</span><span>10 / 17</span></div>
   </div>
@@ -575,8 +626,8 @@ footer.site a:hover{color:#fff}
   <div class="wrap">
     <div class="eyebrow-block reveal">
       <div class="label">Implementation Roadmap</div>
-      <h2 class="h-sec">Your 90-day roadmap — what we do, and what you <span class="accent">get.</span></h2>
-      <p class="lead">Package 2's guided journey, stage by stage — from assessment to business impact. Every stage produces a concrete deliverable.</p>
+      <h2 class="h-sec">Your 90-day roadmap: what we do, and what you <span class="accent">get.</span></h2>
+      <p class="lead">Package 2's guided journey, stage by stage, from assessment to business impact. Every stage produces a concrete deliverable.</p>
     </div>
     <div class="road-line reveal"></div>
     <div class="road">
@@ -588,7 +639,7 @@ footer.site a:hover{color:#fff}
     </div>
     <div class="callout reveal d1" style="margin-top:22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
       <span class="k" style="flex:none">Powered throughout</span>
-      <span style="color:rgba(255,255,255,0.85);font-size:.94rem"><strong style="color:#fff">AI Growth Learning Hub</strong> — assessment, dashboard, progress &amp; evidence tracked across every stage; the LMS is how each deliverable is produced and proven.</span>
+      <span style="color:rgba(255,255,255,0.85);font-size:.94rem"><strong style="color:#fff">AI Growth Learning Hub</strong> tracks assessment, dashboard, progress, and evidence across every stage. The LMS is how each deliverable is produced and proven.</span>
     </div>
     <div class="grid g-3" style="margin-top:24px">
       <div class="reveal" style="background:#EEF3FA;border-radius:14px;padding:20px"><strong>Learning evidence</strong><p style="font-size:.86rem;color:var(--text-2);margin-top:6px">Attendance, completion, assessment, certification</p></div>
@@ -606,7 +657,7 @@ footer.site a:hover{color:#fff}
     <div class="eyebrow-block reveal">
       <div class="label">AI Growth Learning Hub</div>
       <h2 class="h-sec">The LMS is the <span class="accent">operating system</span> for AI capability.</h2>
-      <p class="lead">It turns the program from "training completed" into "capability measured, applied, and reported" — the proof layer leadership can take to the board.</p>
+      <p class="lead">It moves the program from "training completed" to "capability measured, applied, and reported." This is the proof layer leadership can take to the board.</p>
     </div>
     <div class="split">
       <div class="grid g-2 reveal" style="gap:14px">
@@ -627,7 +678,7 @@ footer.site a:hover{color:#fff}
           <div class="kpi"><div class="kl">Score</div><div class="kv n-red">82<small>/100</small></div></div>
           <div class="kpi"><div class="kl">Progress</div><div class="kv n-blue">75%</div></div>
         </div>
-        <div class="label muted" style="margin-bottom:8px;font-size:9px">Capability growth — last 8 weeks</div>
+        <div class="label muted" style="margin-bottom:8px;font-size:9px">Capability growth, last 8 weeks</div>
         <div class="bars">
           <div class="bar" style="height:30%"></div><div class="bar" style="height:42%"></div>
           <div class="bar" style="height:50%"></div><div class="bar" style="height:58%"></div>
@@ -650,13 +701,13 @@ footer.site a:hover{color:#fff}
   <div class="wrap">
     <div class="eyebrow-block reveal">
       <div class="label">Measurement Framework</div>
-      <h2 class="h-sec">Measurable impact — <span class="accent">not just training hours.</span></h2>
+      <h2 class="h-sec">Measurable impact, <span class="accent">beyond training hours.</span></h2>
     </div>
     <div class="split">
       <div class="rows reveal">
         <div class="row"><span class="rn">1</span><div><h4>Pre-Assessment</h4><p>Diagnostic by a certified trainer-assessor. Result: individual &amp; team baseline score.</p></div></div>
         <div class="row"><span class="rn">2</span><div><h4>Capability Mapping</h4><p>Mapping strengths and development areas as the basis for personalization.</p></div></div>
-        <div class="row"><span class="rn">3</span><div><h4>Quarterly Progress Review</h4><p>Periodic measurement — reports ready to present to leadership.</p></div></div>
+        <div class="row"><span class="rn">3</span><div><h4>Quarterly Progress Review</h4><p>Periodic measurement, with reports ready to present to leadership.</p></div></div>
         <div class="row"><span class="rn">4</span><div><h4>Final Impact Report + Certification</h4><p>Delta score, behavioral evidence, ROI analysis, and formal certification.</p></div></div>
       </div>
       <div class="card reveal d1" style="border:1.5px solid var(--red)">
@@ -686,8 +737,8 @@ footer.site a:hover{color:#fff}
       <div class="card card-ink reveal" style="align-self:stretch">
         <div class="label" style="color:var(--red)">New value proposition</div>
         <h3 style="font-size:clamp(1.3rem,2.2vw,1.7rem);margin-top:16px;line-height:1.25">Katalis helps organizations convert AI enthusiasm into growth capability.</h3>
-        <p style="margin-top:14px">Not "training as usual." Not "tools demo." But measured capability, business-use-case output, and implementation discipline.</p>
-        <p style="color:var(--red);font-weight:700;margin-top:18px">→ AI Growth Capability Partner</p>
+        <p style="margin-top:14px">This goes past routine training and tool demos. It delivers measured capability, business-use-case output, and implementation discipline.</p>
+        <p style="color:var(--red);font-weight:700;margin-top:18px">AI Growth Capability Partner</p>
       </div>
       <div class="rows reveal d1">
         <div class="row"><span class="rn">1</span><div><h4>AI + transformation experts</h4><p>Trainer network combines AI, organizational change, and leadership development.</p></div></div>
@@ -728,7 +779,7 @@ footer.site a:hover{color:#fff}
     </div>
     <div class="callout reveal d1" style="margin-top:24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
       <span class="k" style="flex:none">Trainer network</span>
-      <span style="color:rgba(255,255,255,0.85);font-size:.96rem">Katalis Trainer Network — <strong style="color:#fff">25+ additional experts</strong>, curated to your organization's needs.</span>
+      <span style="color:rgba(255,255,255,0.85);font-size:.96rem">The Katalis Trainer Network adds <strong style="color:#fff">25+ further experts</strong>, curated to your organization's needs.</span>
     </div>
     <div class="sfoot"><span>katalis.org · 2026</span><span>15 / 17</span></div>
   </div>
@@ -762,8 +813,8 @@ footer.site a:hover{color:#fff}
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:14px">
-        <div class="quote reveal d1"><div class="stars">★★★★★</div><p>"Katalis's training opened new perspectives and helped us design a more effective strategy going forward."</p><div class="by">Wulan — Public Relations, Babetrans (Ministry of Transportation)</div></div>
-        <div class="quote reveal d2"><div class="stars">★★★★★</div><p>"Katalis shifted our mindset — from routine operations to a clearer sense of direction and purpose."</p><div class="by">Riza — Public Relations, PDAM Depok</div></div>
+        <div class="quote reveal d1"><div class="stars">★★★★★</div><p>"Katalis's training opened new perspectives and helped us design a more effective strategy going forward."</p><div class="by">Wulan, Public Relations, Babetrans (Ministry of Transportation)</div></div>
+        <div class="quote reveal d2"><div class="stars">★★★★★</div><p>"Katalis shifted our mindset, from routine operations to a clearer sense of direction and purpose."</p><div class="by">Riza, Public Relations, PDAM Depok</div></div>
       </div>
     </div>
     <div class="logos reveal">
@@ -807,7 +858,7 @@ footer.site a:hover{color:#fff}
         <div class="cta-card reveal d1">
           <h3>Ready to transform.</h3>
           <p>Commercial logic: start with Package 2 for selected pilot functions, then scale Package 1 enterprise-wide.</p>
-          <a href="mailto:hello@katalis.org" class="btn on-ink" style="margin-top:22px">Book a discovery call →</a>
+          <a href="mailto:hello@katalis.org" class="btn on-ink" style="margin-top:22px">Book a discovery call</a>
         </div>
         <div class="contact-card reveal d2">
           <div class="label muted" style="color:var(--red)">Contact</div>
